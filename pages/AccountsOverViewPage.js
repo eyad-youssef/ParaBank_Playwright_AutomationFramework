@@ -4,11 +4,7 @@ exports.AccountsOverviewPage=class AccountsOverviewPage{
         this.page= page; 
         this.AccountsOverviewLink = page.getByRole('link', { name: 'Accounts Overview' });
         this.accountsOverviewTable=  page.locator('id=accountTable');;
-        this.totalAmountField= page.
-        // locator('class=ng-binding');
-        // id="accountTable"
-        // getByRole('cell', { name: '-$' }).nth(1)
-          locator('b').filter({ hasText: '$' }); 
+        this.totalAmountField= page.locator('b').filter({ hasText: '$' }); 
         // getByRole('cell', { name: '-$' }).nth(1)
         // getByRole('cell', { name: 'Total' })
         // <b class="ng-binding">-$14100,000.00</b>
