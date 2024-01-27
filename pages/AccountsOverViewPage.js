@@ -7,7 +7,7 @@ exports.AccountsOverviewPage=class AccountsOverviewPage{
         this.totalAmountField= page.locator('b').filter({ hasText: '$' }); 
         // getByRole('cell', { name: '-$' }).nth(1)
         // getByRole('cell', { name: 'Total' })
-        // <b class="ng-binding">-$14100,000.00</b>
+     
     } 
     async clickOnAccountsOverviewLink(){ 
       await  this.AccountsOverviewLink.click();
