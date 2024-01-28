@@ -25,21 +25,23 @@ test('End to end scenario',async({page})=>{
     const billPayPage = new BillPayPage(page); 
     const accountsOverviewPage= new AccountsOverviewPage(page)
 
-   // await page.pause(); 
-    // await newAccountPage.clickOnOpenNewAccount();  
+//    await page.pause(); 
+    // await newAccountPage.clickOnOpenNewAccount();
+    // await newAccountPage.createNewAccount('13455',2)  
     // await transferFundsPage.clickOnTransferFunds(); 
     // await transferFundsPage.transferToSameAccount('13455','13455','100');
     // await transferFundsPage.transferLargeAmount('13566','13455','5000000');
     // await requestLoanPage.clickOnRequestLoan();
-    // await requestLoanPage.applyForloan('7000','1000','13455');
-    // await requestLoanPage.applyForloan('1000','7000','13455');
+    // await requestLoanPage.applyForValidloan('2000','1000','13455');
+    // await requestLoanPage.clickOnRequestLoan();
+    // await requestLoanPage.applyForInvalidLoan('1000','7000','13455');
     // await billPayPage.clickOnBillPayLink();
     // await billPayPage.payBill('user','3rd St','cairo','egypt','12478','01144789955','123456789','123456789','3500000','13455');
     // await billPayPage.checkBalance();
     // await billPayPage.clickOnBillPayLink();
     // await billPayPage.payBill('user','3rd St','cairo','egypt','12478','01144889955','123456789','123456789','3600000','13455');
- 
-await accountsOverviewPage.countTableRows();
+//  await accountsOverviewPage.getTotalBalance();
+    // await accountsOverviewPage.countTableRows();
     // await page.pause(); 
 
 })

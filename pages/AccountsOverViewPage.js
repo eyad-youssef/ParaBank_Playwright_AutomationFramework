@@ -4,8 +4,10 @@ exports.AccountsOverviewPage=class AccountsOverviewPage{
         this.page= page; 
         this.AccountsOverviewLink = page.getByRole('link', { name: 'Accounts Overview' });
         this.accountsOverviewTable=  page.locator('id=accountTable');;
-        this.totalAmountField= page.locator('b').filter({ hasText: '$' }); 
-        // getByRole('cell', { name: '-$' }).nth(1)
+        this.totalBalanceField= page.
+        // $('b.ng-binding');  
+        //  getByRole('cell', { name: '$3500,000.00' }).nth(1);
+        getByRole('cell', { name: '$' }).nth(1)
         // getByRole('cell', { name: 'Total' })
      
     } 
@@ -13,8 +15,13 @@ exports.AccountsOverviewPage=class AccountsOverviewPage{
       await  this.AccountsOverviewLink.click();
      
     } 
-    async getTotalAmount(){ 
-      await this.totalAmountField.innerText();
+    async getTotalBalance(){ 
+    // console.log( await this.totalBalanceField.innerText());
+     
+    const totalBalance = await this.totalBalanceField.textContent();
+    console.log( await totalBalance);
+    return totalBalance;
+     
     } 
 
     // async  countTableRows() {
