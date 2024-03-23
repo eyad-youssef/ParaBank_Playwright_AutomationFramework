@@ -26,7 +26,7 @@ exports.RequestLoanPage = class RequestLoanPage{
         await this.applyButton.click();  
 
         const status= await  this.loanStatus.textContent(); 
-        // console.log(status)    
+            
             await expect.soft( this.loanStatus).toContainText("Approved");
             await expect.soft(this.approvalStatusMessage).toContainText('Congratulations, your loan has been approved.');
     }

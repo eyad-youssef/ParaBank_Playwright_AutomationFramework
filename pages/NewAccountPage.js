@@ -28,12 +28,12 @@ async clickOnOpenNewAccount(){
                 await this.account.selectOption({value: accountNumber});
                 await this.OpenNewAccountButton.click();
                 await this.clickOnOpenNewAccount(); 
-            // 
+          
             }  
 
             
             
-            //  await expect.soft(this.getTotalBalance()).toHaveText('3500000'); 
+            
             
               
 }
