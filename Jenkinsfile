@@ -9,11 +9,11 @@ pipeline {
       }
     }
     
-    stage('Install Dependencies') {
+   stage('Install Dependencies') {
       steps {
-        // Install Node.js and dependencies
-        sh 'nvm install'
-        sh 'npm install'
+        // Install Node.js and Playwright dependencies
+        bat 'choco install nodejs-lts'
+        bat 'npm install'
       }
     }
     
