@@ -1,41 +1,37 @@
- pipeline {
-   agent { docker { image 'mcr.microsoft.com/playwright:v1.42.1-jammy' } }
-  
-      stages {
-          stage('Checkout') {
-               steps {
-       // Checkout the source code from your Git repository
-               git 'https://github.com/eyad-youssef/ParaBank_Playwright_AutomationFramework.git'
-                }
+pipeline {
+  agent { 
+    docker { 
+      image 'mcr.microsoft.com/playwright:v1.17.2-focal'
+    } 
+  }
+  stages {
+    stage('install playwright') {
+      steps {
+        sh '''
+          npm i -D @playwright/test
+          npx playwright install
+        '''
       }
-    
-    stage('Install Dependencies') {
-        steps {
-            sh 'npm ci'
-            sh 'npx playwright test BaseTest.spec.js --project=chromium --headed'
-         }
     }
-    
-//     stage('Run Tests') {
-//       steps {
-//         // Run Playwright tests
-//         sh 'npx playwright test BaseTest.spec.js --project=chromium --headed'
-//       }
-//     }
-    
-//     stage('Publish Test Results') {
-//       steps {
-//         // Publish test results in JUnit format
-//         junit 'test-results/**/*.xml'
-//       }
-//     }
-//   }
-  
-//   post {
-//     always {
-//       // Clean up artifacts or perform any necessary cleanup steps
-//       deleteDir()
-//     }
-//   }
- }
+    stage('help') {
+      steps {
+        sh 'npx playwright test --help'
+      }
+    }
+    stage('test') {
+      steps {
+        sh '''
+          npm ci
+          npx playwright test BaseTest.spec.js --project=chromium --headed
+        '''
+      }
+      post {
+        success {
+          archiveArtifacts(artifacts: 'homepage-*.png', followSymlinks: false)
+          sh 'rm -rf *.png'
+        }
+      }
+    }
+  }
+}
 
