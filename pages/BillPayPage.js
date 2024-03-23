@@ -16,15 +16,11 @@ exports.BillPayPage = class BillPayPage extends AccountsOverviewPage {
         this.amountTextField=page.locator('input[name="amount"]');
         this.fromAcountList=page.getByRole('combobox');
         this.sendPaymentButton=page.getByRole('button', { name: 'Send Payment' });
+        this.paymentMessage= page.getByText('Bill Payment to user in the');
 
     }  
 
-    async checkBalance(){  
-        const totalAmountElement = await this.getTotalAmount();
-        const totalAmountText = await totalAmountElement.innerText;
-        await expect(totalAmountElement).toHaveText('1');
-
-    }
+   
 
     async clickOnBillPayLink(){ 
         await this.BillPayLink.click();
@@ -43,8 +39,27 @@ exports.BillPayPage = class BillPayPage extends AccountsOverviewPage {
         await this.verfiyAccountNumberTextField.fill(verfiyAccountNumber);
         await this.amountTextField.fill(amount);
         await this.fromAcountList.selectOption({ value: account});
-        await this.sendPaymentButton.click();
+        await this.sendPaymentButton.click(); 
 
+       
+
+
+    } 
+
+
+    async checkBalanceAfterLeastPayment(){  
+        const totalBalance = await this.getTotalBalance(); 
+        await expect.soft(totalBalance).toEqual("$0.00"); 
+    } 
+
+
+    async checkBalanceAfterMostPayment(){  
+        const totalBalance = await this.getTotalBalance(); 
+        await expect.soft(totalBalance).toEqual("$0.00"); 
+        const message = await this.paymentMessage.textContent();  
+        await expect.soft(message).toContainText("You can not pay more than balance in your account");
+        
 
     }
+
 }

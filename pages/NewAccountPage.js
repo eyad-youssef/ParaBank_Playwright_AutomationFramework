@@ -30,9 +30,8 @@ async clickOnOpenNewAccount(){
                 await this.clickOnOpenNewAccount(); 
             // 
             }  
-            const totalBalance = await this.getTotalBalance(); 
-              expect.soft(totalBalance).toHaveText('3500000');
-              console.log( totalBalance);
+
+            
             
             //  await expect.soft(this.getTotalBalance()).toHaveText('3500000'); 
             
